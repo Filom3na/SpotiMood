@@ -1,0 +1,74 @@
+[
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Liability",
+      "artist": "Lorde",
+      "spotify_id": "6F5OxczIdpZztHrrwZNHAP",
+      "mood": 1
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Someone Like You",
+      "artist": "Adele",
+      "spotify_id": "0kN6eo2XdTwtlw5hY6lfB5",
+      "mood": 2
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Closer",
+      "artist": "The Chainsmokers",
+      "spotify_id": "7BKLCZ1jbUBVqRi2FVlTVw",
+      "mood": 3
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Thinking Out Loud",
+      "artist": "Ed Sheeran",
+      "spotify_id": "1Slwb6dOYkBlWal1PGX4Ni",
+      "mood": 4
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Holocene",
+      "artist": "Bon Iver",
+      "spotify_id": "4pDtjVTyqYWCZY9npxMYtf",
+      "mood": 5
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Migraine",
+      "artist": "Twenty One Pilots",
+      "spotify_id": "1VSBRs2jczG1fmDZ1TlhSH",
+      "mood": 6
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "In the Aeroplane Over the Sea",
+      "artist": "Neutral Milk Hotel",
+      "spotify_id": "5E5bPRlPsm3h9rF3TZzCyj",
+      "mood": 7
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Weightless",
+      "artist": "Marconi Union",
+      "spotify_id": "4frEbR7fRaQYRqCN4vPSsS",
+      "mood": 8
+    }
+  }
+]
