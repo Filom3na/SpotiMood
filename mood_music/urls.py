@@ -1,18 +1,14 @@
 from django.urls import path
+from . import views
 from .views import (
     UserIndexView, UserDetailView,
     MoodIndexView, MoodDetailView,
     MoodEntryIndexView, MoodEntryDetailView,
     MoodPlaylistIndexView, MoodPlaylistDetailView,
-    SongIndexView, SongDetailView
+    SongIndexView, SongDetailView, RegisterView,
+    LoginView
 )
-from .views_apiview import (
-    UserListCreateAPIView, UserDetailAPIView,
-    MoodListCreateAPIView, MoodDetailAPIView,
-    MoodEntryListCreateAPIView, MoodEntryDetailAPIView,
-    MoodPlaylistListCreateAPIView, MoodPlaylistDetailAPIView,
-    SongListCreateAPIView, SongDetailAPIView
-)
+from .spotify_views import spotify_authorize, spotify_callback
 
 urlpatterns = [
     # URLs for generic views
@@ -26,16 +22,17 @@ urlpatterns = [
     path('mood-playlists/<int:pk>/', MoodPlaylistDetailView.as_view(), name='mood-playlist-detail'),
     path('songs/', SongIndexView.as_view(), name='song-index'),
     path('songs/<int:pk>/', SongDetailView.as_view(), name='song-detail'),
-    
-    # URLs for APIView-based views
-    path('api/users/', UserListCreateAPIView.as_view(), name='user-list-api'),
-    path('api/users/<int:pk>/', UserDetailAPIView.as_view(), name='user-detail-api'),
-    path('api/moods/', MoodListCreateAPIView.as_view(), name='mood-list-api'),
-    path('api/moods/<int:pk>/', MoodDetailAPIView.as_view(), name='mood-detail-api'),
-    path('api/mood-entries/', MoodEntryListCreateAPIView.as_view(), name='mood-entry-list-api'),
-    path('api/mood-entries/<int:pk>/', MoodEntryDetailAPIView.as_view(), name='mood-entry-detail-api'),
-    path('api/mood-playlists/', MoodPlaylistListCreateAPIView.as_view(), name='mood-playlist-list-api'),
-    path('api/mood-playlists/<int:pk>/', MoodPlaylistDetailAPIView.as_view(), name='mood-playlist-detail-api'),
-    path('api/songs/', SongListCreateAPIView.as_view(), name='song-list-api'),
-    path('api/songs/<int:pk>/', SongDetailAPIView.as_view(), name='song-detail-api'),
+
+    # URLs for user authentication and registration
+    path('api/register/', RegisterView.as_view(), name='register'),
+    path('api/login/', LoginView.as_view(), name='login'),
+
+    # URLs for Spotify integration
+    path('api/spotify-authorize/', spotify_authorize, name='spotify-authorize'),
+    path('api/spotify-callback/', spotify_callback, name='spotify-callback'),
+
+    # URL for connect_spotify view
+    path('connect-spotify/', views.connect_spotify, name='connect-spotify'),
+    path('mood-recommendations/<int:mood_id>/', views.MoodRecommendationsView.as_view(), name='mood-recommendations'),
+    path('user-recommendations/', views.UserRecommendationsView.as_view(), name='user-recommendations'),
 ]
