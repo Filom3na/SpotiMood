@@ -1,12 +1,12 @@
 from django.urls import path
-from . import views
 from .views import (
     UserIndexView, UserDetailView,
     MoodIndexView, MoodDetailView,
     MoodEntryIndexView, MoodEntryDetailView,
     MoodPlaylistIndexView, MoodPlaylistDetailView,
     SongIndexView, SongDetailView, RegisterView,
-    LoginView
+    LoginView, MoodRecommendationsView, UserRecommendationsView,
+    connect_spotify
 )
 from .spotify_views import spotify_authorize, spotify_callback
 
@@ -24,15 +24,17 @@ urlpatterns = [
     path('songs/<int:pk>/', SongDetailView.as_view(), name='song-detail'),
 
     # URLs for user authentication and registration
-    path('api/register/', RegisterView.as_view(), name='register'),
-    path('api/login/', LoginView.as_view(), name='login'),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('login/', LoginView.as_view(), name='login'),
 
     # URLs for Spotify integration
-    path('api/spotify-authorize/', spotify_authorize, name='spotify-authorize'),
-    path('api/spotify-callback/', spotify_callback, name='spotify-callback'),
+    path('spotify-authorize/', spotify_authorize, name='spotify-authorize'),
+    path('spotify-callback/', spotify_callback, name='spotify-callback'),
 
     # URL for connect_spotify view
-    path('connect-spotify/', views.connect_spotify, name='connect-spotify'),
-    path('mood-recommendations/<int:mood_id>/', views.MoodRecommendationsView.as_view(), name='mood-recommendations'),
-    path('user-recommendations/', views.UserRecommendationsView.as_view(), name='user-recommendations'),
+    path('connect-spotify/', connect_spotify, name='connect-spotify'),
+
+    # URLs for mood and user recommendations
+    path('mood-recommendations/<int:mood_id>/', MoodRecommendationsView.as_view(), name='mood-recommendations'),
+    path('user-recommendations/', UserRecommendationsView.as_view(), name='user-recommendations'),
 ]
