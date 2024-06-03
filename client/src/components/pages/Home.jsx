@@ -1,57 +1,69 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../../styles/main.scss';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col'
+import Card from 'react-bootstrap/Card'
+import Carousel from 'react-bootstrap/Carousel';
 
-function LandingPage() {
+
+
+function Home() {
   return (
-    <div className="landing-page">
-      <header className="bg-dark text-white text-center py-5">
-        <div className="container">
-          <h1 className="display-4">SpotiMood</h1>
-          <p className="lead">Discover music based on your mood</p>
+    <div className="hero-image">
+      <div className="home-container">
+        <div className="title-container">
+          <h1 className="title">SpotiMood</h1>
         </div>
-      </header>
-      <main className="container my-5">
-        <div className="row justify-content-center">
-          <div className="col-md-6 text-center">
-            <div className="cta-buttons">
-              <Link to="/register" className="btn btn-primary btn-lg m-2">
-                Register
-              </Link>
-              <Link to="/login" className="btn btn-secondary btn-lg m-2">
-                Login
-              </Link>
-            </div>
+        <div className="content-container">
+          <h1>Welcome to SpotiMood</h1>
+          <p className="description">
+            SpotiMood is an app that helps you discover music based on your mood. Whether you're feeling happy, sad, energetic, or relaxed, SpotiMood has got you covered.
+          </p>
+          <Row className="feature-carousel-row">
+            <Col xs={12}>
+              <Card className="feature-carousel">
+                <Card.Body>
+                  <Carousel>
+                    <Carousel.Item>
+                      <div className="feature">
+                        <i className="fas fa-music feature-icon"></i>
+                        <h3 className="feature-title">Mood-Based Music</h3>
+                        <p className="feature-description">
+                          Select your current mood and let SpotiMood curate a playlist that matches your emotional state.
+                        </p>
+                      </div>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                      <div className="feature">
+                        <i className="fas fa-list feature-icon"></i>
+                        <h3 className="feature-title">Personalized Playlists</h3>
+                        <p className="feature-description">
+                          Create and save personalized playlists based on your favorite moods and discover new songs.
+                        </p>
+                      </div>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                      <div className="feature">
+                        <i className="fas fa-journal-whills feature-icon"></i>
+                        <h3 className="feature-title">Mood Journaling</h3>
+                        <p className="feature-description">
+                          Keep track of your moods and reflect on your emotional journey through the power of music.
+                        </p>
+                      </div>
+                    </Carousel.Item>
+                  </Carousel>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+          <div className="cta-container">
+            <Link to="/register" className="cta-button">Get Started</Link>
           </div>
         </div>
-        <div className="row mt-5">
-          <div className="col-md-4">
-            <div className="card">
-              <div className="card-body">
-                <h3 className="card-title">Select Your Mood</h3>
-                <p className="card-text">Choose from a variety of moods to match your current emotional state.</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className="card">
-              <div className="card-body">
-                <h3 className="card-title">Get Song Recommendations</h3>
-                <p className="card-text">Discover new songs that align with your selected mood.</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className="card">
-              <div className="card-body">
-                <h3 className="card-title">Create Mood Playlists</h3>
-                <p className="card-text">Save your favorite songs to personalized mood playlists.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
+      </div>
     </div>
   );
 }
 
-export default LandingPage;
+export default Home;

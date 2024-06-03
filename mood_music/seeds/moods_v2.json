@@ -1,0 +1,233 @@
+[
+  {
+    "model": "mood_music.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$720000$32MdxFtXuob6KiZVr43sNE$z1KFePL7EIdGlscuzVlvhSTpB6TWtGVZ02o5yxHCAnU=",
+      "last_login": "2024-06-03T10:08:20.577Z",
+      "is_superuser": true,
+      "username": "filomen@",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-06-03T10:01:34.060Z",
+      "spotify_access_token": null,
+      "spotify_refresh_token": null,
+      "spotify_token_expires_at": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "mood_music.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$720000$04ZteZ2NsdGAUQCKHhGzdt$XrRS54mUsHEe8WyuDIUxRWhC0rwLV/niwRaJY19Swno=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "soop",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-06-03T10:09:10.572Z",
+      "spotify_access_token": null,
+      "spotify_refresh_token": null,
+      "spotify_token_expires_at": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 22,
+    "fields": {
+      "name": "Heartbreak",
+      "genres": "indie, alternative, emo",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 23,
+    "fields": {
+      "name": "Grief",
+      "genres": "indie, folk, singer-songwriter",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 24,
+    "fields": {
+      "name": "Depressed",
+      "genres": "indie, alternative, emo",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 25,
+    "fields": {
+      "name": "Melancholy",
+      "genres": "indie, folk, ambient",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 26,
+    "fields": {
+      "name": "Lonely",
+      "genres": "indie, folk, singer-songwriter",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 27,
+    "fields": {
+      "name": "Scared",
+      "genres": "indie, alternative, rock",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 28,
+    "fields": {
+      "name": "Anxious",
+      "genres": "indie, electronic, alternative",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 29,
+    "fields": {
+      "name": "Tired",
+      "genres": "indie, folk, ambient",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 30,
+    "fields": {
+      "name": "Chill",
+      "genres": "indie, folk, acoustic",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 31,
+    "fields": {
+      "name": "Sleep",
+      "genres": "ambient, instrumental, folk",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 32,
+    "fields": {
+      "name": "Calm",
+      "genres": "acoustic, ambient, folk",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 33,
+    "fields": {
+      "name": "Confident",
+      "genres": "pop, hip-hop, r&b",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 34,
+    "fields": {
+      "name": "Happiness",
+      "genres": "pop, rock, dance",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 35,
+    "fields": {
+      "name": "In Love",
+      "genres": "pop, r&b, soul",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 36,
+    "fields": {
+      "name": "Motivation",
+      "genres": "hip-hop, pop, rock",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 37,
+    "fields": {
+      "name": "Energetic",
+      "genres": "dance, hip-hop, electronic",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 38,
+    "fields": {
+      "name": "Delight",
+      "genres": "pop, indie, rock",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 39,
+    "fields": {
+      "name": "Focused",
+      "genres": "ambient, instrumental, classical",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 40,
+    "fields": {
+      "name": "Thrill",
+      "genres": "rock, metal, punk",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 41,
+    "fields": {
+      "name": "Creative",
+      "genres": "indie, alternative, electronic",
+      "user": 1
+    }
+  },
+  {
+    "model": "mood_music.mood",
+    "pk": 42,
+    "fields": {
+      "name": "disappointed",
+      "genres": "grunge",
+      "user": 1
+    }
+  }
+]
