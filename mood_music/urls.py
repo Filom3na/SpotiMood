@@ -1,11 +1,15 @@
 from django.urls import path
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 from .views import (
-    UserIndexView, UserDetailView,
+    UserIndexView, UserDetailView, ProfileView,
     MoodIndexView, MoodDetailView,
     MoodEntryIndexView, MoodEntryDetailView,
     MoodPlaylistIndexView, MoodPlaylistDetailView,
-    SongIndexView, SongDetailView, RegisterView,
-    LoginView, MoodRecommendationsView, UserRecommendationsView,
+    SongIndexView, SongDetailView, RegisterView, LoginView,
+    MoodRecommendationsView, UserRecommendationsView,
     connect_spotify
 )
 from .spotify_views import spotify_authorize, spotify_callback
@@ -14,9 +18,10 @@ urlpatterns = [
     # URLs for generic views
     path('users/', UserIndexView.as_view(), name='user-index'),
     path('users/<int:pk>/', UserDetailView.as_view(), name='user-detail'),
+    path('profile/', ProfileView.as_view(), name='profile'),
     path('moods/', MoodIndexView.as_view(), name='mood-index'),
     path('moods/<int:pk>/', MoodDetailView.as_view(), name='mood-detail'),
-    path('mood-entries/', MoodEntryIndexView.as_view(), name='mood-entry-index'),
+    path('mood-entries/',  MoodEntryIndexView.as_view(), name='mood-entry-index'),
     path('mood-entries/<int:pk>/', MoodEntryDetailView.as_view(), name='mood-entry-detail'),
     path('mood-playlists/', MoodPlaylistIndexView.as_view(), name='mood-playlist-index'),
     path('mood-playlists/<int:pk>/', MoodPlaylistDetailView.as_view(), name='mood-playlist-detail'),
@@ -24,8 +29,9 @@ urlpatterns = [
     path('songs/<int:pk>/', SongDetailView.as_view(), name='song-detail'),
 
     # URLs for user authentication and registration
-    path('register/', RegisterView.as_view(), name='register'),
+    path('register/', RegisterView.as_view(), name='register'),  # Updated URL path
     path('login/', LoginView.as_view(), name='login'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     # URLs for Spotify integration
     path('spotify-authorize/', spotify_authorize, name='spotify-authorize'),

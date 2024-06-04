@@ -19,7 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('mood_music.urls')),
     path('api/', include('mood_music.urls')),
-    path('api/moods/', include('mood_music.urls')),
 ]

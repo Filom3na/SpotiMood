@@ -5,6 +5,10 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Login() {
   const fields = {
+    username: {
+      type: 'text',
+      placeholder: 'Your last name',
+    },
     email: {
       type: 'email',
       placeholder: 'example@email.com',
@@ -17,11 +21,21 @@ export default function Login() {
 
   const navigate = useNavigate()
 
-  async function handleLogin(formData) {
-    const { data: { token } } = await axios.post('/api/login', formData)
-    setToken(token)
-    navigate('/mood-entry')
-  }
+  const handleLogin = async (formData) => {
+  
+    try {
+      const response = await axios.post('api/login/', {
+        username: formData.username,
+        password: formData.password,
+      });
+      const { access } = response.data;
+  
+      setToken(access);
+      navigate('/mood-entry');
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+  };
 
   return (
     <div className="form-page">

@@ -3,13 +3,10 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import '../../styles/main.scss'
 
+
 export default function Register() {
   const fields = {
-    firstName: {
-      type: 'text',
-      placeholder: 'Your first name',
-    },
-    lastName: {
+    username: {
       type: 'text',
       placeholder: 'Your last name',
     },
@@ -29,11 +26,10 @@ export default function Register() {
 
   const navigate = useNavigate()
 
-  async function handleRegister(formData) {
-    console.log('Handling registration with data:', formData)
+  const handleRegistration = async (formData) => {
     try {
-      const response = await axios.post('/api/register', formData)
-      console.log('Registration response:', response)
+      const response = await axios.post('api/register/', formData);
+      console.log('Registration successful:', response.data);
       navigate('/login')
     } catch (error) {
       console.error('Registration failed:', error)
@@ -43,7 +39,7 @@ export default function Register() {
   return (
     <div className="form-page">
       <h2 style={{ textAlign: 'center' }}><span style={{ fontWeight: '500', fontSize: '50px' }}>Register</span></h2>
-      <FormComponent request={handleRegister} fields={fields} submit="Register" />
+      <FormComponent request={handleRegistration} fields={fields} submit="Register" />
     </div>
   )
 }

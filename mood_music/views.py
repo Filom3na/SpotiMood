@@ -11,6 +11,8 @@ from .serializers.common import UserSerializer, MoodSerializer, MoodEntrySeriali
 from .serializers.populated import PopulatedUserSerializer, PopulatedMoodSerializer, PopulatedMoodEntrySerializer, PopulatedMoodPlaylistSerializer, PopulatedSongSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 @login_required
@@ -36,6 +38,13 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
             return PopulatedUserSerializer
         return UserSerializer
 
+class ProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = UserSerializer(request.user)
+        return Response(user.data)
+    
 class MoodIndexView(generics.ListCreateAPIView):
     queryset = Mood.objects.all()
     serializer_class = MoodSerializer
@@ -95,6 +104,7 @@ class SongDetailView(generics.RetrieveUpdateDestroyAPIView):
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [AllowAny] 
 
 class LoginView(TokenObtainPairView):
     serializer_class = TokenObtainPairSerializer
@@ -155,11 +165,17 @@ def get_personalized_recommendations(user, limit=10):
     return recommended_songs[:limit]
 
 class MoodRecommendationsView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, mood_id):
-        mood = Mood.objects.get(id=mood_id)
-        recommended_songs = get_recommended_songs(mood, request.user)
-        serializer = SongSerializer(recommended_songs, many=True)
-        return Response(serializer.data)
+        try:
+            mood = Mood.objects.get(id=mood_id)
+            recommended_songs = get_recommended_songs(mood, request.user)
+            serializer = SongSerializer(recommended_songs, many=True)
+            return Response(serializer.data)
+        except Mood.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
 class UserRecommendationsView(APIView):
     def get(self, request):

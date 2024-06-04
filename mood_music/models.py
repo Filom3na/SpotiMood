@@ -22,7 +22,7 @@ class MoodEntry(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='mood_entries',  default=1)
     mood = models.ForeignKey(Mood, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_mood_entries')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE,blank=True, related_name='owned_mood_entries')
 
     def __str__(self):
         return f"{self.user.username}'s {self.mood.name} entry"
