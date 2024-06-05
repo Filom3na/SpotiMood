@@ -2,37 +2,64 @@
   {
     "model": "mood_music.Song",
     "fields": {
-      "title": "Liability",
-      "artist": "Lorde",
-      "spotify_id": "6F5OxczIdpZztHrrwZNHAP",
-      "mood": 1
-    }
-  },
-  {
-    "model": "mood_music.Song",
-    "fields": {
       "title": "Someone Like You",
       "artist": "Adele",
       "spotify_id": "0kN6eo2XdTwtlw5hY6lfB5",
-      "mood": 2
+      "mood": 22
     }
   },
   {
     "model": "mood_music.Song",
     "fields": {
-      "title": "Closer",
-      "artist": "The Chainsmokers",
-      "spotify_id": "7BKLCZ1jbUBVqRi2FVlTVw",
-      "mood": 3
+      "title": "The Night We Met",
+      "artist": "Lord Huron",
+      "spotify_id": "7B2edU3Q7btJoNsoHCNohM",
+      "mood": 22
     }
   },
   {
     "model": "mood_music.Song",
     "fields": {
-      "title": "Thinking Out Loud",
-      "artist": "Ed Sheeran",
-      "spotify_id": "1Slwb6dOYkBlWal1PGX4Ni",
-      "mood": 4
+      "title": "Tears in Heaven",
+      "artist": "Eric Clapton",
+      "spotify_id": "7ILvbb2wrRYhIXnC8U2C5v",
+      "mood": 23
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Hurt",
+      "artist": "Johnny Cash",
+      "spotify_id": "3kW4z2pOjOZE4PFOhuB29o",
+      "mood": 23
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Mad World",
+      "artist": "Gary Jules",
+      "spotify_id": "4NzMOnvSJVNKF7nw5NkXIP",
+      "mood": 24
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Breathe Me",
+      "artist": "Sia",
+      "spotify_id": "1W2FhGigP5QYjrluVZ5SxE",
+      "mood": 24
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Skinny Love",
+      "artist": "Bon Iver",
+      "spotify_id": "3FngkTq8c0vzeTy15BM2VA",
+      "mood": 25
     }
   },
   {
@@ -40,26 +67,98 @@
     "fields": {
       "title": "Holocene",
       "artist": "Bon Iver",
-      "spotify_id": "4pDtjVTyqYWCZY9npxMYtf",
-      "mood": 5
+      "spotify_id": "6LMSaCaz1TcNNFqPZWKVMV",
+      "mood": 25
     }
   },
   {
     "model": "mood_music.Song",
     "fields": {
-      "title": "Migraine",
+      "title": "The Night We Met",
+      "artist": "Lord Huron",
+      "spotify_id": "7B2edU3Q7btJoNsoHCNohM",
+      "mood": 26
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Lost Boy",
+      "artist": "Ruth B.",
+      "spotify_id": "1GrikfH0jDejDvrxo84xYW",
+      "mood": 26
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Creep",
+      "artist": "Radiohead",
+      "spotify_id": "6b2oQwSGFkzsMtQruIWm2p",
+      "mood": 27
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "People Are Strange",
+      "artist": "The Doors",
+      "spotify_id": "6OO0HNZhsVeG9ov8pU2W93",
+      "mood": 27
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Stressed Out",
       "artist": "Twenty One Pilots",
-      "spotify_id": "1VSBRs2jczG1fmDZ1TlhSH",
-      "mood": 6
+      "spotify_id": "3CRDbSIZ4r5MsZ0YwxuEkn",
+      "mood": 28
     }
   },
   {
     "model": "mood_music.Song",
     "fields": {
-      "title": "In the Aeroplane Over the Sea",
-      "artist": "Neutral Milk Hotel",
-      "spotify_id": "5E5bPRlPsm3h9rF3TZzCyj",
-      "mood": 7
+      "title": "bury a friend",
+      "artist": "Billie Eilish",
+      "spotify_id": "4VqPOruhp5EdPBeR92t6lQ",
+      "mood": 28
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Holocene",
+      "artist": "Bon Iver",
+      "spotify_id": "6LMSaCaz1TcNNFqPZWKVMV",
+      "mood": 29
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Sunflower",
+      "artist": "Vampire Weekend",
+      "spotify_id": "1CdqVF1ywDbsJOuEKH7Iym",
+      "mood": 29
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Banana Pancakes",
+      "artist": "Jack Johnson",
+      "spotify_id": "7leFSEVXNf9U1dDYbUq00n",
+      "mood": 30
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Sunday Morning",
+      "artist": "Maroon 5",
+      "spotify_id": "1QEEqeFIZktqIpPI4jSVSF",
+      "mood": 30
     }
   },
   {
@@ -67,8 +166,215 @@
     "fields": {
       "title": "Weightless",
       "artist": "Marconi Union",
-      "spotify_id": "4frEbR7fRaQYRqCN4vPSsS",
-      "mood": 8
+      "spotify_id": "1tDWVeCR9oWGX8O7nafuE0",
+      "mood": 31
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Nocturne No. 2 in E Flat Major, Op. 9",
+      "artist": "Frédéric Chopin",
+      "spotify_id": "3VE3n5wUnIhjIvwHVIa5kh",
+      "mood": 31
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "River Flows In You",
+      "artist": "Yiruma",
+      "spotify_id": "6j9vAA9IKvxG3qgWOtFcFi",
+      "mood": 32
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Spiegel im Spiegel",
+      "artist": "Arvo Pärt",
+      "spotify_id": "2IiiHyRlLx6lLRXjq2vG9A",
+      "mood": 32
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Stronger",
+      "artist": "Kanye West",
+      "spotify_id": "1ewQgeD1T3KO4Z99yFsjgP",
+      "mood": 33
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Lose Yourself",
+      "artist": "Eminem",
+      "spotify_id": "7MoePUVQv0nwSk7g4e9AiE",
+      "mood": 33
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Happy",
+      "artist": "Pharrell Williams",
+      "spotify_id": "6NPVjNh8Jhru9xOmyQigds",
+      "mood": 34
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Walking on Sunshine",
+      "artist": "Katrina and the Waves",
+      "spotify_id": "0WQiDwKJclirSYG9v5tayI",
+      "mood": 34
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Adore You",
+      "artist": "Harry Styles",
+      "spotify_id": "3jjujdWJ72nww5eGnfs2E7",
+      "mood": 35
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Just the Way You Are",
+      "artist": "Bruno Mars",
+      "spotify_id": "7BqBn9nzAq8spo5e7cZ0dJ",
+      "mood": 35
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Eye of the Tiger",
+      "artist": "Survivor",
+      "spotify_id": "2KH16WveTQWT6KOG9Rg6e2",
+      "mood": 36
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Can't Hold Us",
+      "artist": "Macklemore & Ryan Lewis",
+      "spotify_id": "2RgKJhtvnDGuHtIAXCLmI0",
+      "mood": 36
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Uptown Funk",
+      "artist": "Mark Ronson ft. Bruno Mars",
+      "spotify_id": "32OlwWuMpZ6b0aN2RZOeMS",
+      "mood": 37
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Shut Up and Dance",
+      "artist": "WALK THE MOON",
+      "spotify_id": "7qzhxxOW7vM98D8H19bU1R",
+      "mood": 37
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Best Day of My Life",
+      "artist": "American Authors",
+      "spotify_id": "4dOnpGlJOc6NaNGS7DG9Cz",
+      "mood": 38
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Send Me On My Way",
+      "artist": "Rusted Root",
+      "spotify_id": "4VlmtWXRbRzDNUFZrmFawX",
+      "mood": 38
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Clair de Lune",
+      "artist": "Claude Debussy",
+      "spotify_id": "1Ux2DDjtX6cCVtRYK3jivU",
+      "mood": 39
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Comptine d'un autre été, l'après-midi",
+      "artist": "Yann Tiersen",
+      "spotify_id": "4vOm1kJLhyTFUPi1lPGtJb",
+      "mood": 39
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Thunderstruck",
+      "artist": "AC/DC",
+      "spotify_id": "57bgtoPSgt236HzfBOd8kj",
+      "mood": 40
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Welcome to the Jungle",
+      "artist": "Guns N' Roses",
+      "spotify_id": "2gFgAsoPpIErbAbqvfoqGn",
+      "mood": 40
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Electric Feel",
+      "artist": "MGMT",
+      "spotify_id": "1g2knzMrMUkN3v1JOXgF8E",
+      "mood": 41
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Midnight City",
+      "artist": "M83",
+      "spotify_id": "29xKs5BAHlmlX1u4gzQAbJ",
+      "mood": 41
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Come As You Are",
+      "artist": "Nirvana",
+      "spotify_id": "2hSvnWqV4UlmdqMObYwPqo",
+      "mood": 42
+    }
+  },
+  {
+    "model": "mood_music.Song",
+    "fields": {
+      "title": "Black Hole Sun",
+      "artist": "Soundgarden",
+      "spotify_id": "3fXVT95KXVv8BbOkoha0cU",
+      "mood": 42
     }
   }
 ]

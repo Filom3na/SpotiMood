@@ -1,0 +1,191 @@
+[
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Heartbreak Hits",
+      "spotify_playlist_id": "37i9dQZF1DXbrUpGvoi3TS",
+      "mood": 22,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Grieving Tunes",
+      "spotify_playlist_id": "37i9dQZF1DX4jPZRFmJEIb",
+      "mood": 23,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Depression Jams",
+      "spotify_playlist_id": "37i9dQZF1DX3YSRoSdA634",
+      "mood": 24,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Melancholic Melodies",
+      "spotify_playlist_id": "37i9dQZF1DX7qK8ma5wgG1",
+      "mood": 25,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Lonesome Vibes",
+      "spotify_playlist_id": "37i9dQZF1DX4OzrY981I1W",
+      "mood": 26,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Spooky Sounds",
+      "spotify_playlist_id": "37i9dQZF1DXcBWIGoYBM5M",
+      "mood": 27,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Anxious Anthems",
+      "spotify_playlist_id": "37i9dQZF1DX0fMqWlhAHLQ",
+      "mood": 28,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Sleepy Sounds",
+      "spotify_playlist_id": "37i9dQZF1DWYcDQ1hSjOpY",
+      "mood": 29,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Chill Vibes",
+      "spotify_playlist_id": "37i9dQZF1DX0SM0LYsmbMT",
+      "mood": 30,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Sleep Soundscapes",
+      "spotify_playlist_id": "37i9dQZF1DWZd79rJ6a7lp",
+      "mood": 31,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Calming Collection",
+      "spotify_playlist_id": "37i9dQZF1DX1s9knjP51Oa",
+      "mood": 32,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Confidence Boost",
+      "spotify_playlist_id": "37i9dQZF1DX4fpCWaHOned",
+      "mood": 33,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist", 
+    "fields": {
+      "name": "Happy Hits",
+      "spotify_playlist_id": "37i9dQZF1DXdPec7aLTmlC",
+      "mood": 34,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Love Songs",
+      "spotify_playlist_id": "37i9dQZF1DX7rOY2tZUw1k",
+      "mood": 35,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Motivational Mix",
+      "spotify_playlist_id": "37i9dQZF1DX70RN3TfWWJh",
+      "mood": 36,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Energy Boost",
+      "spotify_playlist_id": "37i9dQZF1DX0BcQWzuB7ZO",
+      "mood": 37,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Delightful Tunes",
+      "spotify_playlist_id": "37i9dQZF1DX1OUP9rJVobc",
+      "mood": 38,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Focus Flow",
+      "spotify_playlist_id": "37i9dQZF1DWWQRwui0ExPn",
+      "mood": 39,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Thrilling Tracks",
+      "spotify_playlist_id": "37i9dQZF1DX5OepaGriAp6",
+      "mood": 40,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Creative Juice",
+      "spotify_playlist_id": "37i9dQZF1DX2pSTOxoPbx9",
+      "mood": 41,
+      "owner": 1
+    }
+  },
+  {
+    "model": "mood_music.MoodPlaylist",
+    "fields": {
+      "name": "Grunge Disappointment",
+      "spotify_playlist_id": "37i9dQZF1DX8A1zFoYHyxY",
+      "mood": 42,
+      "owner": 1
+    }
+  }
+]

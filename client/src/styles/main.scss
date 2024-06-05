@@ -284,3 +284,172 @@ label {
 .add-button:hover {
   background-color: #1aa34a;
 }
+
+.song-recommendation-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.song-recommendation {
+  max-width: 600px;
+  width: 100%;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.message {
+  font-size: 18px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.song-list {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.song-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.song-details {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.song-title {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.song-artist {
+  font-size: 16px;
+  color: #666;
+}
+
+.song-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.play-button,
+.add-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.play-button {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.add-button {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+.no-songs {
+  font-size: 18px;
+  color: #888;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.mood-journal-button {
+  display: block;
+  width: 300px;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mood-journal-button:hover {
+  background-color: #45a049;
+}
+
+.mood-journal {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .mood-entry-list {
+    list-style-type: none;
+    padding: 0;
+
+    .mood-entry-item {
+      background-color: #f5f5f5;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+
+      .mood-entry-details {
+        text-align: center;
+
+        .mood-entry-date {
+          font-size: 18px;
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+
+        .mood-entry-text {
+          font-size: 16px;
+          margin-bottom: 10px;
+        }
+
+        .mood-entry-song {
+          font-size: 16px;
+          font-style: italic;
+        }
+      }
+    }
+  }
+
+  .no-entries {
+    font-size: 18px;
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+  }
+}

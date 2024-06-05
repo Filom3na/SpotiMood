@@ -1,5 +1,5 @@
 from django.db.models import Q, Count
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
@@ -13,6 +13,10 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from .spotify_utils import get_spotify_client
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 @login_required
@@ -171,11 +175,44 @@ class MoodRecommendationsView(APIView):
     def get(self, request, mood_id):
         try:
             mood = Mood.objects.get(id=mood_id)
-            recommended_songs = get_recommended_songs(mood, request.user)
-            serializer = SongSerializer(recommended_songs, many=True)
-            return Response(serializer.data)
+
+            # Fetch mood-based playlists from Spotify
+            logger.info(f"Fetching mood-based playlists for mood {mood.id}")
+            spotify = get_spotify_client(request.user)  # Use get_spotify_client from spotify_utils
+            # playlists = spotify.search(q=mood.name, type='playlist', limit=10)
+
+            # Store playlist information in the database
+            # for playlist in playlists['playlists']['items']:
+            #     mood_playlist, created = MoodPlaylist.objects.get_or_create(
+            #         spotify_playlist_id=playlist['id'],
+            #         mood=mood,
+            #         defaults={'name': playlist['name']}
+            #     )
+
+            #     # Fetch songs from the playlist and store in the database
+            #     playlist_tracks = spotify.playlist_tracks(playlist['id'])
+            #     for track in playlist_tracks['items']:
+            #         song, created = Song.objects.get_or_create(
+            #             spotify_id=track['track']['id'],
+            #             defaults={
+            #                 'title': track['track']['name'],
+            #                 'artist': track['track']['artists'][0]['name'],
+            #                 'mood': mood,
+            #                 'mood_playlist': mood_playlist
+            #             }
+            #         )
+
+            # # Retrieve recommended songs from the database
+            # recommended_songs = get_recommended_songs(mood, request.user)
+            # logger.info(f"Retrieved {len(recommended_songs)} recommended songs for mood {mood.id}")
+            # serializer = SongSerializer(recommended_songs, many=True)
+            return Response()
         except Mood.DoesNotExist:
+            logger.error(f"Mood with id {mood_id} does not exist")
             return Response(status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            logger.error(f"An error occurred while fetching recommended songs: {str(e)}")
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class UserRecommendationsView(APIView):
     def get(self, request):

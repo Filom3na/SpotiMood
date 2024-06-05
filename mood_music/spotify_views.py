@@ -38,7 +38,7 @@ def spotify_callback(request):
         user.spotify_token_expires_at = token_info['expires_at']
         user.save()
 
-        return redirect('home')  # Redirect to the home page or desired page after successful authentication
+        return redirect('client/src/components/pages/SongRecommendation.jsx')  
 
     except Exception as e:
         logger.error(f"Error during Spotify callback: {str(e)}")
