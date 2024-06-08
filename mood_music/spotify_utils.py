@@ -9,11 +9,17 @@ def get_spotify_client(user):
         client_secret=CLIENT_SECRET,
         redirect_uri=REDIRECT_URI,
         scope='user-library-read playlist-modify-private playlist-read-private',
+        cache_handler=None
     )
-    auth_manager.get_access_token(user.spotify_refresh_token)
-    return spotipy.Spotify(auth_manager=auth_manager)
+    auth_manager.cache_handler.token_info = {
+        'access_token': user.spotify_access_token,
+        'expires_at': 0,  # Set expires_at to 0 to force token refresh
+        'refresh_token': None
+    }
+    spotify_client = spotipy.Spotify(auth_manager=auth_manager)
+    return spotify_client
 
-def fetch_mood_playlists(mood):
+def fetch_mood_playlists(mood, user):
     spotify = get_spotify_client(user)
     playlists = spotify.category_playlists(category_id=mood.name.lower())
     for playlist in playlists['playlists']['items']:
@@ -23,9 +29,9 @@ def fetch_mood_playlists(mood):
             defaults={'name': playlist['name']}
         )
         if created:
-            fetch_playlist_songs(mood_playlist)
+            fetch_playlist_songs(mood_playlist, user)
 
-def fetch_playlist_songs(mood_playlist):
+def fetch_playlist_songs(mood_playlist, user):
     spotify = get_spotify_client(user)
     playlist_tracks = spotify.playlist_items(mood_playlist.spotify_playlist_id)
     for track in playlist_tracks['items']:

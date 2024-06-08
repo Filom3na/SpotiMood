@@ -8,6 +8,7 @@ django = "*"
 djangorestframework = "*"
 psycopg2-binary = "*"
 pylint = "*"
+random-string-generator = "*"
 
 [dev-packages]
 

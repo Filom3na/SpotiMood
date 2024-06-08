@@ -453,3 +453,76 @@ label {
     margin-top: 20px;
   }
 }
+
+
+.mood-playlist-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.mood-playlist-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.mood-playlist-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.mood-playlist-item {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mood-playlist-name {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.song-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.song-item {
+  margin-bottom: 8px;
+}
+
+.song-title {
+  font-weight: bold;
+}
+
+.song-artist {
+  color: #666;
+}
+
+.no-songs-message {
+  color: #999;
+  font-style: italic;
+}
+
+.delete-playlist-button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.delete-playlist-button:hover {
+  background-color: #c82333;
+}
+
+.no-playlists-message {
+  color: #999;
+  font-style: italic;
+  text-align: center;
+}

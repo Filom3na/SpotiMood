@@ -12,9 +12,13 @@ export default function SongRecommendation() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchRecommendedSongs();
-    fetchUserProfile();
-    fetchMoodName();
+    if (selectedMood) {
+      fetchRecommendedSongs();
+      fetchUserProfile();
+      fetchMoodName();
+    } else {
+      console.error('Selected mood is undefined')
+    }
   }, [selectedMood]);
 
   const fetchRecommendedSongs = async () => {
@@ -25,11 +29,14 @@ export default function SongRecommendation() {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log(response)
+
       setRecommendedSongs(response.data);
     } catch (error) {
       console.error('Error fetching recommended songs:', error);
     }
   };
+
 
   const fetchUserProfile = async () => {
     try {
@@ -58,6 +65,60 @@ export default function SongRecommendation() {
     navigate('/mood-journal');
   };
 
+  const handleAddToPlaylist = async (song) => {
+    try {
+      const token = getToken();
+      const response = await axios.post(
+        '/api/mood-playlists/',
+        { name: moodName, mood: selectedMood },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const playlistId = response.data.id;
+
+    
+      // Add the song to the new playlist
+      await axios.post(
+        '/api/songs/',
+        { title: song.title, artist: song.artist, mood_playlist: playlistId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      // Show a success message or perform any other desired action
+      console.log('Song added to playlist successfully!');
+    } catch (error) {
+      console.error('Error creating playlist and adding song:', error);
+    }
+  };
+
+
+  const associateSongsWithPlaylist = async (song) => {
+    try {
+      const token = getToken();
+      await axios.post(
+        '/api/associate-songs/',
+        { song},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.error('Error associating songs with playlist:', error);
+    }
+    console.log(song)
+  };
+
   return (
     <div className="song-recommendation-wrapper">
       <div className="song-recommendation">
@@ -75,7 +136,12 @@ export default function SongRecommendation() {
                 </div>
                 <div className="song-actions">
                   <button className="play-button">Play</button>
-                  <button className="add-button">Add to Playlist</button>
+                  <button
+                    className="add-button"
+                    onClick={() => associateSongsWithPlaylist(song)}
+                  >
+                    Add to Playlist
+                  </button>
                 </div>
               </li>
             ))}

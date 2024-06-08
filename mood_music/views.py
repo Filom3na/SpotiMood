@@ -1,5 +1,6 @@
 from django.db.models import Q, Count
 from rest_framework import generics, status
+from django.db import IntegrityError
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
@@ -13,21 +14,29 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from .spotify_utils import get_spotify_client
+from .spotify_utils import get_spotify_client, SpotifyOAuth
+from .credentials import CLIENT_ID, CLIENT_SECRET, REDIRECT_URI
+from django.http import JsonResponse
 import logging
 
 logger = logging.getLogger(__name__)
-
 
 @login_required
 def connect_spotify(request):
     user = request.user
     if not user.spotify_access_token:
         # User is not connected to Spotify, redirect to the Spotify authorization URL
-        return redirect(reverse('spotify-authorize'))
+        auth_manager = SpotifyOAuth(
+            client_id=CLIENT_ID,
+            client_secret=CLIENT_SECRET,
+            redirect_uri=REDIRECT_URI,
+            scope='user-library-read playlist-modify-private playlist-read-private',
+        )
+        authorization_url = auth_manager.get_authorize_url()
+        return JsonResponse({'redirect_url': authorization_url})
 
-    # User is already connected to Spotify, redirect to the profile or desired page
-    return redirect('profile')
+    # User is already connected to Spotify, redirect to the mood-entry page
+    return JsonResponse({'redirect_url': None})
 
 class UserIndexView(generics.ListCreateAPIView):
     queryset = User.objects.all()
@@ -79,8 +88,13 @@ class MoodEntryDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 class MoodPlaylistIndexView(generics.ListCreateAPIView):
     queryset = MoodPlaylist.objects.all()
-    serializer_class = MoodPlaylistSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET': 
+            return PopulatedMoodPlaylistSerializer
+        else:
+            return MoodPlaylistSerializer
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -113,36 +127,45 @@ class RegisterView(generics.CreateAPIView):
 class LoginView(TokenObtainPairView):
     serializer_class = TokenObtainPairSerializer
     
-def get_recommended_songs(mood, user):
-    """
-    Retrieve recommended songs based on the user's selected mood, using a combination of mood-genre mapping and mood-based playlists.
-    """
-    # Get songs associated with the selected mood
-    mood_songs = Song.objects.filter(mood=mood)
+# def get_recommended_songs(mood, user):
+#     # Get songs associated with the selected mood
+#     mood_songs = Song.objects.filter(mood=mood)
 
-    # Get songs associated with playlists of the selected mood that are owned by the user
-    mood_playlists = MoodPlaylist.objects.filter(mood=mood, owner=user)
-    playlist_songs = Song.objects.filter(mood_playlist__in=mood_playlists)
+#     # Get songs associated with playlists of the selected mood that are owned by the user
+#     mood_playlists = MoodPlaylist.objects.filter(mood=mood, owner=user)
+#     playlist_songs = Song.objects.filter(mood_playlist__in=mood_playlists)
 
-    # Combine the songs from the mood and playlists, removing duplicates
-    recommended_songs = (mood_songs | playlist_songs).distinct()
+#     # Combine the songs from the mood and playlists, removing duplicates
+#     recommended_songs = (mood_songs | playlist_songs).distinct()
 
-    # Filter songs based on the genres associated with the mood (if any)
-    if mood.genres:
-        genre_list = mood.genres.split(',')
-        recommended_songs = recommended_songs.filter(
-            Q(artist__icontains=genre_list[0]) |
-            Q(title__icontains=genre_list[0]) |
-            Q(artist__icontains=genre_list[1]) |
-            Q(title__icontains=genre_list[1])
-        )
+#     # Filter songs based on the genres associated with the mood (if any)
+#     if mood.genres:
+#         genre_list = mood.genres.split(',')
+#         recommended_songs = recommended_songs.filter(
+#             Q(artist__icontains=genre_list[0]) |
+#             Q(title__icontains=genre_list[0]) |
+#             Q(artist__icontains=genre_list[1]) |
+#             Q(title__icontains=genre_list[1])
+#         )
 
-    return recommended_songs
+#     return recommended_songs
+
+
+# class MoodPlaylistCreateView(generics.CreateAPIView):
+#     queryset = MoodPlaylist.objects.all()
+#     serializer_class = MoodPlaylistSerializer
+#     permission_classes = [IsAuthenticated]
+
+#     def perform_create(self, serializer):
+#         try:
+#             mood = Mood.objects.get(id=self.request.data['mood'])
+#             serializer.save(owner=self.request.user, mood=mood)
+#         except Mood.DoesNotExist:
+#             raise serializers.ValidationError('Mood does not exist')
+#         except IntegrityError:
+#             raise serializers.ValidationError('Duplicate playlist name for the user and mood')
 
 def get_personalized_recommendations(user, limit=10):
-    """
-    Retrieve personalized song recommendations based on the user's mood history.
-    """
     # Get the user's most frequent moods
     user_moods = user.moods.annotate(mood_count=Count('moodentry')).order_by('-mood_count')[:3]
 
@@ -168,53 +191,134 @@ def get_personalized_recommendations(user, limit=10):
 
     return recommended_songs[:limit]
 
+# 
+
+#this is the view w/o spotify
+def get_recommended_songs(mood, user):
+    # Get songs associated with the selected mood
+    mood_songs = Song.objects.filter(mood=mood)
+
+    # Get songs associated with playlists of the selected mood that are owned by the user
+  
+    playlist_songs = Song.objects.filter(mood_playlist__in=mood_playlists)
+
+    # Combine the songs from the mood and playlists, removing duplicates
+    recommended_songs = (mood_songs | playlist_songs).distinct()
+
+    # Filter songs based on the genres associated with the mood (if any)
+    if mood.genres:
+        genre_list = mood.genres.split(',')
+        recommended_songs = recommended_songs.filter(
+            Q(artist__icontains=genre_list[0]) |
+            Q(title__icontains=genre_list[0]) |
+            Q(artist__icontains=genre_list[1]) |
+            Q(title__icontains=genre_list[1])
+        )
+
+    return recommended_songs
+
 class MoodRecommendationsView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
     def get(self, request, mood_id):
         try:
-            mood = Mood.objects.get(id=mood_id)
-
-            # Fetch mood-based playlists from Spotify
-            logger.info(f"Fetching mood-based playlists for mood {mood.id}")
-            spotify = get_spotify_client(request.user)  # Use get_spotify_client from spotify_utils
-            # playlists = spotify.search(q=mood.name, type='playlist', limit=10)
-
-            # Store playlist information in the database
-            # for playlist in playlists['playlists']['items']:
-            #     mood_playlist, created = MoodPlaylist.objects.get_or_create(
-            #         spotify_playlist_id=playlist['id'],
-            #         mood=mood,
-            #         defaults={'name': playlist['name']}
-            #     )
-
-            #     # Fetch songs from the playlist and store in the database
-            #     playlist_tracks = spotify.playlist_tracks(playlist['id'])
-            #     for track in playlist_tracks['items']:
-            #         song, created = Song.objects.get_or_create(
-            #             spotify_id=track['track']['id'],
-            #             defaults={
-            #                 'title': track['track']['name'],
-            #                 'artist': track['track']['artists'][0]['name'],
-            #                 'mood': mood,
-            #                 'mood_playlist': mood_playlist
-            #             }
-            #         )
-
-            # # Retrieve recommended songs from the database
+            # mood = Mood.objects.get(id=mood_id)
             # recommended_songs = get_recommended_songs(mood, request.user)
-            # logger.info(f"Retrieved {len(recommended_songs)} recommended songs for mood {mood.id}")
-            # serializer = SongSerializer(recommended_songs, many=True)
-            return Response()
+            songs = Song.objects.filter(mood=mood_id)
+            serializer = SongSerializer(songs, many=True)
+            return Response(serializer.data)
         except Mood.DoesNotExist:
-            logger.error(f"Mood with id {mood_id} does not exist")
             return Response(status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
-            logger.error(f"An error occurred while fetching recommended songs: {str(e)}")
             return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+
+class MoodPlaylistCreateView(generics.CreateAPIView):
+    queryset = MoodPlaylist.objects.all()
+    serializer_class = MoodPlaylistSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        mood_id = self.request.data.get('mood')
+        if mood_id:
+            try:
+                mood = Mood.objects.get(id=mood_id)
+                playlist_name = mood.name
+                serializer.save(owner=self.request.user, mood=mood, name=playlist_name)
+            except Mood.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST, data={'error': 'Missing mood field'})
+# class AssociateSongsWithPlaylistView(APIView):
+#     authentication_classes = [JWTAuthentication]
+#     permission_classes = [IsAuthenticated]
+
+#     def post(self, request):
+#         playlist_id = request.data.get('playlist_id')
+#         if playlist_id:
+#             try:
+#                 playlist = MoodPlaylist.objects.get(id=playlist_id)
+#                 mood = playlist.mood
+#                 songs = Song.objects.filter(mood=mood)
+
+#                 for song in songs:
+#                     song.mood_playlist = playlist
+#                     song.save()
+
+#                 return Response(status=status.HTTP_200_OK)
+#             except MoodPlaylist.DoesNotExist:
+#                 return Response(status=status.HTTP_404_NOT_FOUND)
+#         else:
+#             return Response(status=status.HTTP_400_BAD_REQUEST, data={'error': 'Missing playlist_id field'})
+
+class AssociateSongsWithPlaylistView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        song = request.data.get('song')
+        # print(song)
+        song_to_update = Song.objects.get(pk=song.get('id'))
+        if song:
+            try:
+                print(song.get('mood'))
+                playlist_to_find = MoodPlaylist.objects.get(mood=song.get('mood'))
+                playlist = MoodPlaylistSerializer(playlist_to_find)
+                print('plalist already exists')
+            except MoodPlaylist.DoesNotExist:
+                populated_song= PopulatedSongSerializer(song_to_update)
+                print(populated_song.data)
+
+                new_playlist= {
+                  'name' : populated_song.data.get('mood').get('name'),
+                  'mood' : song.get('mood'),
+                  'owner' : request.user.id
+                }
+                playlist = MoodPlaylistSerializer(data=new_playlist)
+                if playlist.is_valid():
+                    playlist.save()
+
+                    print('playlist created')
+            
+            serialized_song = SongSerializer(song_to_update)
+
+            if playlist not in song_to_update.mood_playlist.all():
+                print('adding to playlist')
+                song_to_update.mood_playlist.add(playlist.data.get('id'))
+                song_to_update.save()
+            else:
+                print('already in playlist')
+            return Response(status=status.HTTP_201_CREATED)
+        
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST, data={'error': 'Missing playlist_id field'})
+                          
 class UserRecommendationsView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         user = request.user
         recommended_songs = get_personalized_recommendations(user, limit=10)

@@ -19,4 +19,4 @@ class PopulatedMoodPlaylistSerializer(MoodPlaylistSerializer):
 
 class PopulatedSongSerializer(SongSerializer):
     mood = MoodSerializer(read_only=True)
-    mood_playlist = MoodPlaylistSerializer(read_only=True)
+    mood_playlist = MoodPlaylistSerializer(many=True, read_only=True)

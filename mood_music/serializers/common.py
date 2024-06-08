@@ -31,6 +31,12 @@ class MoodPlaylistSerializer(serializers.ModelSerializer):
         model = MoodPlaylist
         fields = '__all__'
 
+# class MoodPlaylistSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = MoodPlaylist
+#         fields = ['id', 'name', 'mood', 'owner']
+#         read_only_fields = ['owner']
+
 class SongSerializer(serializers.ModelSerializer):
     class Meta:
         model = Song

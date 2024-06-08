@@ -10,9 +10,10 @@ from .views import (
     MoodPlaylistIndexView, MoodPlaylistDetailView,
     SongIndexView, SongDetailView, RegisterView, LoginView,
     MoodRecommendationsView, UserRecommendationsView,
-    connect_spotify
+    MoodPlaylistCreateView, AssociateSongsWithPlaylistView,
+    # connect_spotify
 )
-from .spotify_views import spotify_authorize, spotify_callback
+# from .spotify_views import spotify_authorize, spotify_callback, check_spotify_login
 
 urlpatterns = [
     # URLs for generic views
@@ -25,20 +26,23 @@ urlpatterns = [
     path('mood-entries/<int:pk>/', MoodEntryDetailView.as_view(), name='mood-entry-detail'),
     path('mood-playlists/', MoodPlaylistIndexView.as_view(), name='mood-playlist-index'),
     path('mood-playlists/<int:pk>/', MoodPlaylistDetailView.as_view(), name='mood-playlist-detail'),
+    path('mood-playlists/create/', MoodPlaylistCreateView.as_view(), name='mood-playlist-create'),
+    path('associate-songs/', AssociateSongsWithPlaylistView.as_view(), name='song-create'),
     path('songs/', SongIndexView.as_view(), name='song-index'),
     path('songs/<int:pk>/', SongDetailView.as_view(), name='song-detail'),
 
     # URLs for user authentication and registration
-    path('register/', RegisterView.as_view(), name='register'),  # Updated URL path
+    path('register/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    # URLs for Spotify integration
-    path('spotify-authorize/', spotify_authorize, name='spotify-authorize'),
-    path('spotify-callback/', spotify_callback, name='spotify-callback'),
+    # # URLs for Spotify integration
+    # path('spotify-authorize/', spotify_authorize, name='spotify-authorize'),
+    # path('spotify-callback/', spotify_callback, name='spotify-callback'),
 
-    # URL for connect_spotify view
-    path('connect-spotify/', connect_spotify, name='connect-spotify'),
+    # # URL for connect_spotify view
+    # path('connect-spotify/', connect_spotify, name='connect-spotify'),
+    # path('check-spotify-login/', check_spotify_login, name='check-spotify-login'),
 
     # URLs for mood and user recommendations
     path('mood-recommendations/<int:mood_id>/', MoodRecommendationsView.as_view(), name='mood-recommendations'),

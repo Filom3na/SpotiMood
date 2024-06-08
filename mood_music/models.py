@@ -9,6 +9,7 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+    
 class Mood(models.Model):
     name = models.CharField(max_length=100)
     genres = models.CharField(max_length=255, null=True, blank=True)
@@ -29,7 +30,6 @@ class MoodEntry(models.Model):
 
 class MoodPlaylist(models.Model):
     name = models.CharField(max_length=100)
-    spotify_playlist_id = models.CharField(max_length=100)
     mood = models.ForeignKey(Mood, on_delete=models.CASCADE, related_name='playlists')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='owned_mood_playlists',  default=1)
 
@@ -39,9 +39,8 @@ class MoodPlaylist(models.Model):
 class Song(models.Model):
     title = models.CharField(max_length=100)
     artist = models.CharField(max_length=100)
-    spotify_id = models.CharField(max_length=100)
     mood = models.ForeignKey(Mood, on_delete=models.CASCADE, null=True, blank=True, related_name='songs')
-    mood_playlist = models.ForeignKey(MoodPlaylist, on_delete=models.CASCADE, null=True, blank=True, related_name='songs')
+    mood_playlist = models.ManyToManyField(MoodPlaylist, blank=True, related_name='songs')
 
     def __str__(self):
         return f"{self.title} by {self.artist}"
