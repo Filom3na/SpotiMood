@@ -1,5 +1,9 @@
 # SpotiMood: Your Mood-Based Music Companion
 
+
+https://github.com/user-attachments/assets/97539e26-2c3e-4ddc-85da-ddf0d07f8f03
+
+
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Features](#features)
