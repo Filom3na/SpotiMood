@@ -26,7 +26,7 @@ SpotiMood is an innovative mood-based music recommendation application developed
 The application was developed over a two-week sprint, showcasing the integration of a Django backend with a React frontend, and demonstrating proficiency in full-stack development, API integration, and user-centric design.
 
 ## Demo
-The application is deployed on Heroku. You can explore PupPals [here](https://spotimood-12bff2675e3a.herokuapp.com/).
+The application is deployed on Heroku. You can explore Spotimood [here](https://spotimood-12bff2675e3a.herokuapp.com/).
 
 ## Features
 
