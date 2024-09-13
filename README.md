@@ -23,7 +23,7 @@ https://github.com/user-attachments/assets/97539e26-2c3e-4ddc-85da-ddf0d07f8f03
 
 SpotiMood is an innovative mood-based music recommendation application developed as part of the Software Engineering Immersive course at General Assembly. This full-stack project aims to bridge the gap between a user's emotional state and their music listening experience. By allowing users to select their current mood, SpotiMood provides tailored song and playlist recommendations, creating a personalized and emotionally resonant music journey.
 
-The application was developed over a two-week sprint, showcasing the integration of a Django backend with a React frontend, and demonstrating proficiency in full-stack development, API integration, and user-centric design.
+The application was developed in a week timeframe, showcasing the integration of a Django backend with a React frontend, and demonstrating proficiency in full-stack development, API integration, and user-centric design.
 
 ## Demo
 The application is deployed on Heroku. You can explore Spotimood [here](https://spotimood-12bff2675e3a.herokuapp.com/).
