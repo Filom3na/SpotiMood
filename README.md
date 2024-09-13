@@ -79,17 +79,23 @@ The application was developed over a two-week sprint, showcasing the integration
 The planning phase of SpotiMood was crucial in laying a strong foundation for the project's development. Here's a detailed breakdown of the planning process:
 
 1. **Conceptualization and User Stories**:
+![uxflowchart](https://github.com/user-attachments/assets/8440c6df-23f1-41d5-9587-98869e99251e)
+
    - Brainstorming sessions to define the core concept of a mood-based music recommendation app
    - Creation of user stories to outline key functionalities from a user's perspective
    - Example user story: "As a user, I want to select my current mood so that I can receive song recommendations that match my emotional state."
 
-2. **Trello Board Organization**:
+3. **Trello Board Organization**:
+<img width="952" alt="Screenshot 2024-09-13 at 16 24 58" src="https://github.com/user-attachments/assets/1fda45fa-376e-4857-99c0-46beac66945d">
+
    - Set up a Trello board with columns for "To Do", "In Progress", and "Done"
    - Created cards for each feature and user story
    - Assigned priority levels and time estimates to each task
    - Regularly updated the board throughout the development process to track progress
 
-3. **Wireframing with Excalidraw**:
+4. **Wireframing with Excalidraw**:
+![wireframe](https://github.com/user-attachments/assets/ce0165d4-c4f7-432b-aa2c-c7b1b1eb7812)
+
    - Created low-fidelity wireframes for each main component of the application
    - Designed the user flow from login to mood selection and song recommendations
    - Iterated on designs based on peer and instructor feedback
@@ -100,33 +106,31 @@ The planning phase of SpotiMood was crucial in laying a strong foundation for th
      - Song recommendation display
      - User mood journal view
 
-4. **Database Schema Design (ERD)**:
+5. **Database Schema Design (ERD)**:
+![erd](https://github.com/user-attachments/assets/90ce385c-0943-4253-a0a9-6ee557677c4e)
+<img width="389" alt="Screenshot 2024-09-13 at 16 24 20" src="https://github.com/user-attachments/assets/d35459d4-32f8-4e2b-ba65-0d6e4bd43fa0">
+
    - Utilized an ERD tool to visually map out the database structure
    - Defined relationships between models (User, Mood, MoodEntry, Song, MoodPlaylist)
    - Identified primary and foreign keys
    - Planned for scalability and future feature additions
 
-5. **API Endpoint Planning**:
+6. **API Endpoint Planning**:
+<img width="296" alt="Screenshot 2024-09-13 at 16 24 35" src="https://github.com/user-attachments/assets/50a2a29d-ab42-41fc-9e7b-962950b4c805">
+
    - Created a comprehensive list of required API endpoints
    - Documented HTTP methods, URL patterns, request payloads, and expected responses for each endpoint
    - Considered authentication requirements for protected routes
    - Planned for error handling and appropriate status codes
 
-6. **Technology Stack Selection**:
+8. **Technology Stack Selection**:
    - Evaluated various technologies and frameworks
    - Chose Django for the backend due to its robustness and team familiarity
    - Selected React for the frontend to create a dynamic and responsive UI
-   - Decided on PostgreSQL for its reliability and advanced querying capabilities
 
-7. **Project Timeline and Milestones**:
-   - Created a two-week sprint plan with specific milestones
+9. **Project Timeline and Milestones**:
    - Set deadlines for completing backend setup, API development, frontend components, and integration
    - Allocated time for testing, bug fixing, and potential feature additions
-
-8. **Collaboration Strategy**:
-   - Established coding standards and naming conventions
-   - Set up a GitHub repository with branching strategy for feature development
-   - Planned daily stand-ups to discuss progress and roadblocks
 
 This thorough planning process provided a clear roadmap for development, helping to mitigate risks and ensure a focused approach to building SpotiMood.
 
